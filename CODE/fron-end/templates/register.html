@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<section class="contact_section layout_padding-bottom">
+    <div class="container" style="margin-top: 150px;background-color: rgba(132, 147, 179, 0.37); width: 750px;">
+      <div class="heading_container heading_center">
+        <h2 style="color: rgb(248, 246, 242); margin-top: 10px;">
+            Let's Begin
+        
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-8 mx-auto">
+          <div class="form_container">
+            <form action="{{url_for('register')}}" method="post">
+              <div>
+                <input type="text"  name="name"  placeholder="Your Name" style="  background-color: rgba(52, 162, 252, 0.521); color: aliceblue; border-color: rgb(2, 1, 1); " />
+              </div>
+              <div>
+                <input type="email" name="email" placeholder="Your Email" style="  background-color: rgba(52, 162, 252, 0.521); color: aliceblue; border-color: rgb(2, 1, 1);" />
+              </div>
+              <div>
+                <input type="password" name="password" class="password" placeholder="password" style="  background-color: rgba(52, 162, 252, 0.521); color: aliceblue; border-color: rgb(2, 1, 1);"/>
+              </div>
+              <div>
+                <input type="password" name="c_password" class="c_password" placeholder="confirm password" style="  background-color: rgba(52, 162, 252, 0.521); color: aliceblue; border-color: rgb(2, 1, 1);"/>
+              </div>
+              <div class="btn_box " style="margin-bottom: 15px;">
+                <button type="submit">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

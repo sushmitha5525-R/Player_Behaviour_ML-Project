@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+
+{% block image %}
+<div class="hero_area2">
+    {% endblock %}
+
+    {% block navbar %}
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Select the model
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{url_for('model1')}}">Player Engagement Leval</a>
+          <a class="dropdown-item" href="{{url_for('model2')}}">Player Purchase Liklyhood</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Select the prediction
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{url_for('prediction1')}}">Player Engagement Leval</a>
+          <a class="dropdown-item" href="{{url_for('prediction2')}}">Player Purchase Liklyhood</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{url_for('index')}}">logout</a>
+      </li>
+    {% endblock %}
+
+    {% block content %}
+    <div class="page-heading">
+        <div class="container">
+            <center>
+                <div style="margin-top: 150px; background-color: rgba(255, 255, 255, 0.288); width: 800px;">
+
+                    <form action="{{url_for('model2')}}" method="post" enctype="multipart/form-data">
+
+                        <div class="align-self-center">
+                            <div class="caption  header-text"><br><br>
+                                <h3 style="color: aliceblue;">Predicting the  Player Purchase Liklyhood</h3>
+                            {% if msg %}
+                                <h2 style="color: rgb(0, 0, 0);font-weight: bold;">{{msg}}</h2>
+                            {% endif %}
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px;" class="col-6">
+                            <div class="main-button">
+                                <select class="form-select" name="algo" style="width: 430px; height: 40px;">
+                                    <option hidden>Select an Algorithm</option>
+                                    <option value="1">DecisionTree Classifier</option>
+                                    <option value="2">XBoostingClassifier</option>
+                                    <option value="3">LogisticRegression</option>
+                                    <option value="4">RandomForestClassifier</option>
+                                    <option value="5">Artificial_Nural_Network</option>
+                                    <option value="6">Deep_Nural_Network</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px;" class="col-6">
+
+                            <button type="submit" class="btn-5" style="width: 100px;margin-bottom: 50px;">
+                                submit
+                            </button>
+                        </div>
+
+                        {% if path %}
+                        <div class="col-12">
+                            <h2>Prediction : {{prediction}}</h2><br>
+                            <div class="main-button">
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </form>
+                </div>
+
+            </center>
+        </div>
+    </div>
+</div>
+{% endblock %}

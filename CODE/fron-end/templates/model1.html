@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+
+{% block image %}
+<div class="hero_area2">
+{% endblock %}
+
+{% block navbar %}
+<li class="nav-item active">
+    <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+        Select the model
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{url_for('model1')}}">Player Engagement Level</a>
+        <a class="dropdown-item" href="{{url_for('model2')}}">Player Purchase Likelihood</a>
+    </div>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+        Select the prediction
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{url_for('prediction1')}}">Player Engagement Level</a>
+        <a class="dropdown-item" href="{{url_for('prediction2')}}">Player Purchase Likelihood</a>
+    </div>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('index')}}">logout</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+    <div class="container">
+        <center>
+            <div style="margin-top: 150px; background-color: rgba(255, 255, 255, 0.288); width: 800px;">
+
+                <form action="{{url_for('model1')}}" method="post" enctype="multipart/form-data" id="modelForm">
+
+                    <div class="align-self-center">
+                        <div class="caption header-text"><br><br>
+                            <h4 style="color: rgb(253, 254, 255);">Predicting the Player Engagement Level</h4>
+                            {% if msg %}
+                            <h2 style="color: rgb(0, 0, 0);font-weight: bold;">{{msg}}</h2>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px;" class="col-6">
+                        <div class="main-button">
+                            <select class="form-select" name="algo" style="width: 430px; height: 40px;" required>
+                                <option hidden>Select an Algorithm</option>
+                                <option value="1">DecisionTree Classifier</option>
+                                <option value="2">RandomForestClassifier</option>
+                                <option value="3">LogisticRegression</option>
+                                <option value="4">XBoostingClassifier</option>
+                                <option value="5">Artificial_Nural_Network</option>
+                                <option value="6">Deep_Nural_Network</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px;" class="col-6">
+                        <button type="submit" class="btn-5" style="width: 100px;margin-bottom: 50px;">
+                            Submit
+                        </button>
+                    </div>
+
+                    {% if path %}
+                    <div class="col-12">
+                        <h2>Prediction: {{prediction}}</h2><br>
+                    </div>
+                    {% endif %}
+
+                </form>
+            </div>
+        </center>
+    </div>
+</div>
+{% endblock %}
+
+<script>
+    // JavaScript validation to ensure the algorithm is selected
+    document.getElementById("modelForm").addEventListener("submit", function(event) {
+        var algoSelect = document.querySelector('select[name="algo"]');
+        if (algoSelect.value === "" || algoSelect.value === null) {
+            event.preventDefault();  // Prevent form submission
+            alert("Please select an algorithm before submitting.");
+        }
+    });
+</script>

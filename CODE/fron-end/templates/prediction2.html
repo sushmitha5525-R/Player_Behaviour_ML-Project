@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+
+{% block image %}
+<div class="hero_area2">
+  {% endblock %}
+
+  {% block navbar %}
+  <li class="nav-item active">
+    <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Select the model
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="{{url_for('model1')}}">Player Engagement Leval</a>
+      <a class="dropdown-item" href="{{url_for('model2')}}">Player Purchase Liklyhood</a>
+    </div>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Select the prediction
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="{{url_for('prediction1')}}">Player Engagement Leval</a>
+      <a class="dropdown-item" href="{{url_for('prediction2')}}">Player Purchase Liklyhood</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url_for('index')}}">logout</a>
+  </li>
+  {% endblock %}
+
+
+  {% block content %}
+
+  <body
+    style="font-family: Arial, sans-serif; background-image: url('/static/images/trainer-bg.jpg'); background-size: cover; background-position: center; height: 100vh; width: 100%; margin: 0; padding: 0;">
+    <div
+      style="width: 80%; height: 800px; max-width: 600px; margin: 10px auto; padding: 20px; background-color: rgba(0, 0, 0, 0.212); border-radius: 8px; transition: all 0.3s ease;">
+
+      <h1 style="text-align: center; margin-bottom: 20px; color: rgb(255, 255, 255);"> Player Purchase Liklyhood</h1>
+
+      {% if result %}
+      <h3 style="color: rgba(255, 255, 255, 0.897); text-align: center;">Prediction: {{result}}</h3>
+      {% endif %}
+
+      <form action="{{url_for('prediction2')}}" method="post" style="display: flex; flex-direction: column;">        
+        <label for="Daily_Active_Time" style="margin-bottom: 1px; font-weight: bold; color: rgb(245, 244, 244);">Daily_Active_Time:</label>
+        <input type="float" id="Daily_Active_Time" name="Daily_Active_Time"style="margin-bottom: 5px; padding: 10px; font-size: 16px; border: 1px solid #abf0bc; border-radius: 4px;"required>
+
+          <label for="In_Game_Currency_Earned" style="margin-bottom: 1px; font-weight: bold; color: rgb(255, 255, 255);">In_Game_Currency_Earned:</label>
+        <input type="float" id="In_Game_Currency_Earned" name="In_Game_Currency_Earned"style="margin-bottom: 5px; padding: 10px; font-size: 16px; border: 1px solid #abf0bc; border-radius: 4px;"required>
+
+        <label for="Purchase_History" style="margin-bottom: 1px; font-weight: bold; color: rgb(255, 255, 255);">Purchase_History:</label>
+        <input type="float" id="Purchase_History" name="Purchase_History"style="margin-bottom: 5px; padding: 10px; font-size: 16px; border: 1px solid #abf0bc; border-radius: 4px;" required>
+        
+        <label for="Time_of_Purchase" style="margin-bottom: 1px; font-weight: bold; color: rgb(255, 255, 255);">Time_of_Purchase:</label>
+        <input type="float" id="Time_of_Purchase" name="Time_of_Purchase" style="margin-bottom: 5px; padding: 10px; font-size: 16px; border: 1px solid #abf0bc; border-radius: 4px;"required>
+
+        <label for="Churn_Rate" style="margin-bottom: 1px; font-weight: bold; color: rgb(255, 255, 255);">Churn_Rate:</label>
+        <input type="float" id="Churn_Rate" name="Churn_Rate" style="margin-bottom: 5px; padding: 10px; font-size: 16px; border: 1px solid #abf0bc; border-radius: 4px;"required>
+
+        <label for="In_Game_Purchases" style="margin-bottom: 1px; font-weight: bold; color: rgb(255, 255, 255);">In_Game_Purchases:</label>
+        <input type="float" id="In_Game_Purchases" name="In_Game_Purchases" style="margin-bottom: 5px; padding: 10px; font-size: 16px; border: 1px solid #abf0bc; border-radius: 4px;"required>
+
+        <label for="Discount_Utilization" style="margin-bottom: 1px; font-weight: bold; color: rgb(255, 255, 255);">Discount_Utilization:</label>
+        <input type="float" id="Discount_Utilization" name="Discount_Utilization"style="margin-bottom: 5px; padding: 10px; font-size: 16px; border: 1px solid #abf0bc; border-radius: 4px;"required>
+
+        <label for="Quest_Completion_Rate" style="margin-bottom: 1px; font-weight: bold; color: rgb(255, 255, 255);">Quest_Completion_Rate:</label>
+        <input type="float" id="Quest_Completion_Rate" name="Quest_Completion_Rate"  step="any" style="margin-bottom: 10px; padding: 10px; font-size: 16px; border: 1px solid #abf0bc; border-radius: 4px;"required>
+
+
+
+        <button type="submit"
+          style="padding: 10px 20px; font-size: 16px; color: #fff; background-color: #00000079; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+      </form>
+
+    </div>
+  </body>
+  {% endblock %}
